@@ -16,7 +16,12 @@ class PostController extends Controller
     public function index()
     {
         //
-        return view('dashboard.posts');
+        $posts = Posts::get();
+        //dd($posts);
+
+        return view('dashboard.post.posts',[
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -27,7 +32,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('dashboard.posts');
+        return view('dashboard.post.create');
     }
 
     /**
