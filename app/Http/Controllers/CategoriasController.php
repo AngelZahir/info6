@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
@@ -14,6 +15,7 @@ class CategoriasController extends Controller
     public function index()
     {
         //
+        $categorias = Categorias::orderBy('created_at') -> paginate(4);
     }
 
     /**
@@ -24,6 +26,9 @@ class CategoriasController extends Controller
     public function create()
     {
         //
+        return view('dashboard.post.create', [
+            'categorias' => new Categorias()
+        ]);
     }
 
     /**
