@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 /*
@@ -17,9 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/post', PostController::class);
+Route::middleware(['admin'])->group(function () {
+    Route::resource('/post', PostController::class );
+    Route::resource('/categorias', CategoriasController::class);
+        //
+    });
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
